@@ -4,7 +4,7 @@ import MealItemForm from './MealItemForm'
 
 export default function MealItem(props) {
     const price = `$${props.price.toFixed(2)}`
-    
+
   return (
     <li className={classes.meal}>
         <div>
@@ -14,7 +14,13 @@ export default function MealItem(props) {
         </div>
         <div> 
         </div>
-        <MealItemForm/>
+        <MealItemForm 
+          // id={meal.id}
+          // key={meal.id}
+          // name={meal.name}
+          // description={meal.description}
+          // price={meal.price}
+      />
      </li>
    
   )
