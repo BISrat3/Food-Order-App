@@ -13,7 +13,7 @@ export default function Cart(props) {
     
   return (
     <Modal>
-        {props.cartItems}
+        {cartItems}
         <div className={classes.total}>
             <span>Total Amount</span>
             <span>36.2</span>
