@@ -4,7 +4,7 @@ import classes from './MealItemForm.module.css'
 
 export default function MealItemForm(props) {
   return (
-    <form className='classes.form'>
+    <form className={classes.form}>
         <Input label="Amount" input={{
             id:'amount',
             type: 'number',
