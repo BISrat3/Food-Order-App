@@ -2,7 +2,7 @@ import React from 'react'
 import classes from './CartItem.module.css'
 
 export default function CartItem(props) {
-    const price = `$${props.price}`
+    const price = `$${props.price.toFixed(2)}`
 
   return (
     <li className={classes ['cart-item']}>
