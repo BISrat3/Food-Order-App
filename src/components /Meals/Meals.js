@@ -7,8 +7,8 @@ import MealsSummary from './MealsSummary'
 export default function Meals() {
   return (
     <Fragment>
-        <AvailableMeals />
         <MealsSummary />
+        <AvailableMeals />
     </Fragment>
   )
 }
