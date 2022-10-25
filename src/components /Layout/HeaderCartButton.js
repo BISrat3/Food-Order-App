@@ -10,7 +10,7 @@ export default function HeaderCartButton(props) {
   const {items} = cartCtx;
 
   const numberOfCartItems = items.reduce((curNumber, item) => {
-    return curNumber +item.amount
+    return curNumber + item.amount
   }, 0)
 
 
@@ -18,7 +18,7 @@ export default function HeaderCartButton(props) {
     `${classes.button} ${btnIsHighlighted ? classes.bump:''}` 
 
   useEffect (() =>{
-    if(cartCtx.items.length === 0){
+    if(items.length === 0){
       return;
     }
     setBtnIsHighlighted(true)
@@ -33,13 +33,13 @@ export default function HeaderCartButton(props) {
   }, [items])
 
   return (
-        <button 
-          className={btnClasses} onClick={props.onClick}>
-            <span className={classes.icon}>
-                <CartIcon />
-            </span>
-            <span> Text Cart</span>
-            <span className={classes.badge}> {numberOfCartItems}</span>
-        </button>
+    <button 
+      className={btnClasses} onClick={props.onClick}>
+        <span className={classes.icon}>
+            <CartIcon />
+        </span>
+        <span> Text Cart</span>
+        <span className={classes.badge}> {numberOfCartItems}</span>
+    </button>
   )
 }

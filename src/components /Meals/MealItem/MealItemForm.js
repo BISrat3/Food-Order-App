@@ -7,6 +7,7 @@ export default function MealItemForm(props) {
 
     const [amountIsValid, setAmountIsValid] = useState(true)
     const amountInputRef = useRef()
+
     const submitHandler = (event) => {
         event.preventDefault();
 
@@ -16,13 +17,12 @@ export default function MealItemForm(props) {
 
         if(enteredAmount.trim().length === 0 || 
             enteredAmountNumber < 1 || 
-            enteredAmountNumber > 5){
-                return;
-            }
+            enteredAmountNumber > 5)
             {
                 setAmountIsValid(false)
                 return;
             }
+            
             props.onAddToCart(enteredAmountNumber)
     }
 

@@ -14,24 +14,24 @@ const DUMMY_MEALS = [
         id:'m2',
         name:'Schbitzel',
         description: 'A german speciality',
-        price:16.5
+        price:16.5,
     },
     {
         id:'m3',
         name:'Tibs',
         description: 'Ethiopian Food',
-        price:18.5
+        price:18.5,
     },
     {
         id:'m4',
         name:'Barbecue Burger',
         description: 'American, raw, meaty ',
-        price:17.5
+        price:17.5,
     },
 ]
 
 export default function AvailableMeals() {
-    const mealsList= DUMMY_MEALS.map( (meal)=> 
+    const mealsList= DUMMY_MEALS.map((meal)=> 
     <MealItem 
         key={meal.id} 
         id={meal.id}
@@ -43,9 +43,7 @@ export default function AvailableMeals() {
   return (
     <section className={classes.meals}>
        <Card>
-            <ul>
-                {mealsList}
-            </ul>
+            <ul>{mealsList}</ul>
        </Card>
     </section>
   )

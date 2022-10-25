@@ -16,4 +16,5 @@
 .form button:hover, 
 .form button:active {
     background-color: #641e03;
+    border-color: #641e03;
 }
