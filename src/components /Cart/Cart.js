@@ -24,10 +24,10 @@ export default function Cart(props) {
         <ul className={classes['cart-items']}> 
     {/* {[
         { id: 'c1', name:'Sushi', amount: 2, price: 12.99},] */}
-       {cartCtx.items.map((item) => (
-        // <li>
+        {/* // <li>
         //     {item.name}
-        // </li>
+        // </li> */}
+       {cartCtx.items.map((item) => (
         <CartItem 
             key={item.id} 
             name={item.name} 
