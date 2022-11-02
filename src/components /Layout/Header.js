@@ -9,7 +9,7 @@ export default function Header(props) {
   return (
     <Fragment>
         <header className={classes.header}>
-            <h1>React Meals</h1>
+            <h1>George W Restaurant </h1>
             <HeaderCartButton onClick={props.onShowCart} />
             {/* <button>Cart</button> */}
         </header>

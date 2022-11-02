@@ -35,10 +35,10 @@ export default function HeaderCartButton(props) {
   return (
     <button 
       className={btnClasses} onClick={props.onClick}>
+        <span> Add to Cart</span>
         <span className={classes.icon}>
             <CartIcon />
         </span>
-        <span> Text Cart</span>
         <span className={classes.badge}> {numberOfCartItems}</span>
     </button>
   )
