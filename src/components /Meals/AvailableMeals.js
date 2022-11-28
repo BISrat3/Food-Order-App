@@ -33,8 +33,11 @@ import MealItem from './MealItem/MealItem';
 export default function AvailableMeals() {
 
     useEffect (()=>{
-
-        fetch()
+        const fetchMeals = async () => {
+        const response = await fetch('')
+        const responseData = await response.json()
+        }
+        fetchMeals()
     },[])
 
     const mealsList= DUMMY_MEALS.map((meal)=> 
