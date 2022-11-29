@@ -36,6 +36,11 @@ export default function AvailableMeals() {
         const fetchMeals = async () => {
         const response = await fetch('')
         const responseData = await response.json()
+        const loadedMeals = [];
+        
+        for (const key in responseData){
+            loadedMeals.push()
+            }
         }
         fetchMeals()
     },[])
