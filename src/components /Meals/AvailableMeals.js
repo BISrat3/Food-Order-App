@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import classes from './AvailableMeals.module.css'
 import Card from '../UI/Card';
 import MealItem from './MealItem/MealItem';
@@ -31,6 +31,8 @@ import MealItem from './MealItem/MealItem';
 // ]
 
 export default function AvailableMeals() {
+    const [meals, setMeals] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect (()=>{
         const fetchMeals = async () => {
