@@ -54,6 +54,11 @@ export default function AvailableMeals() {
         fetchMeals()
     },[])
 
+
+    if(isLoading){
+        return 
+    }
+
     const mealsList= DUMMY_MEALS.map((meal)=> 
     <MealItem 
         key={meal.id} 
