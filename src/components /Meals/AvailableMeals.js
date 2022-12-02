@@ -32,7 +32,7 @@ import MealItem from './MealItem/MealItem';
 
 export default function AvailableMeals() {
     const [meals, setMeals] = useState([])
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect (()=>{
         const fetchMeals = async () => {
@@ -48,6 +48,8 @@ export default function AvailableMeals() {
                 price: responseData[key].price,
                 })
             }
+            setMeals(loadedMeals)
+            setIsLoading(false)
         }
         fetchMeals()
     },[])
