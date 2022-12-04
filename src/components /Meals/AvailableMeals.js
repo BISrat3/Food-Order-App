@@ -56,7 +56,9 @@ export default function AvailableMeals() {
 
 
     if(isLoading){
-        return 
+        return <section className={classes.MealsLoading}>
+            <p>Loading....</p>
+        </section>
     }
 
     const mealsList= DUMMY_MEALS.map((meal)=> 
