@@ -34,13 +34,21 @@ export default function AvailableMeals() {
     const [meals, setMeals] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
+    // return a cleanup function which can be executed. which run syncronously 
     useEffect (()=>{
+        // the useEffect will run when the component first is loaded, no props or other depenciirs here 
         const fetchMeals = async () => {
         const response = await fetch('')
+        // from fetch we can parse data 
         const responseData = await response.json()
+        // response data is an object so i want to make it an array 
+        // create new loadedmeals constant array
         const loadedMeals = [];
         
+        // key from the firebase goes through response data object 
         for (const key in responseData){
+            // we need to push to loadedMeals id, name...all the fields that we have
+            // key will be id of individual field we are fetching 
             loadedMeals.push({
                 id: key,
                 name: responseData[key].name,
@@ -48,10 +56,14 @@ export default function AvailableMeals() {
                 price: responseData[key].price,
                 })
             }
+            // the array we popualted on the top
             setMeals(loadedMeals)
             setIsLoading(false)
         }
+        // fetch data when the components are loaded
+        // send http request to meal firebase
         fetchMeals()
+        // empty array indicate there is no dependency 
     },[])
 
 
@@ -61,6 +73,8 @@ export default function AvailableMeals() {
         </section>
     }
 
+
+    // initially the meals is empty array
     const mealsList= DUMMY_MEALS.map((meal)=> 
     <MealItem 
         key={meal.id} 
