@@ -32,13 +32,23 @@ import MealItem from './MealItem/MealItem';
 
 export default function AvailableMeals() {
     const [meals, setMeals] = useState([])
+   // we will say state true because we are loading the data clearly 
     const [isLoading, setIsLoading] = useState(true)
+    // we can see that we didn't see any error initially 
+    const [httpError, setHttpError] = useState(null)
+
 
     // return a cleanup function which can be executed. which run syncronously 
     useEffect (()=>{
         // the useEffect will run when the component first is loaded, no props or other depenciirs here 
         const fetchMeals = async () => {
+            
         const response = await fetch('')
+        // if there is error it will throw an error 
+        if(!response.ok){
+            throw new Error ('Something went wrong!')
+        }
+
         // from fetch we can parse data 
         const responseData = await response.json()
         // response data is an object so i want to make it an array 
@@ -58,24 +68,34 @@ export default function AvailableMeals() {
             }
             // the array we popualted on the top
             setMeals(loadedMeals)
+            // we set this because we are done of loading 
             setIsLoading(false)
         }
+       
         // fetch data when the components are loaded
         // send http request to meal firebase
-        fetchMeals()
+        fetchMeals().catch((error)=> {
+            setIsLoading(false)
+            setHttpError(error.message)
+        })
         // empty array indicate there is no dependency 
     },[])
 
 
+    // to render we simply check if loading it true 
     if(isLoading){
         return <section className={classes.MealsLoading}>
             <p>Loading....</p>
         </section>
     }
 
-
+    if(httpError){
+        return <section className={classes.MealsError}>
+            <p>{httpError}</p>
+        </section>
+    }
     // initially the meals is empty array
-    const mealsList= DUMMY_MEALS.map((meal)=> 
+    const mealsList= meals.map((meal)=> 
     <MealItem 
         key={meal.id} 
         id={meal.id}
