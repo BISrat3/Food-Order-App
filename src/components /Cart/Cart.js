@@ -1,10 +1,12 @@
-import React, {useContext} from 'react'
+import React, {useState, useContext} from 'react'
 import CartContext from '../../store/cart-context'
 import Modal from '../UI/Modal'
 import classes from './Cart.module.css'
 import CartItem from './CartItem'
+import CheckOut from './Checkout'
 
 export default function Cart(props) {
+    const [isCheckout, setIsCheckout] = useState(false)
     const cartCtx = useContext(CartContext)
 
     const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`
@@ -18,6 +20,11 @@ export default function Cart(props) {
     const cartItemAddHandler = (item) => {
         // cartCtx.addItem(item)
         cartCtx.addItem({ ...item, amount:1 })
+    }
+
+    // when ever it is clicked I want to make sure the checkout form
+    const orderHandler =()=>{
+        setIsCheckout(true)
     }
 
     const cartItems = (
@@ -40,6 +47,14 @@ export default function Cart(props) {
         </ul>
     )
     
+    const modalActions = (
+    <div className={classes.actions}>
+        <button className={classes['button--alt']} onClick ={props.onClose}>Close</button>
+        {/* we insert onclick function to trigger some functions to order handler */}
+        {hasItems && <button className={classes.button} onClick={orderHandler}>Order</button>}
+    </div>
+    )
+
   return (
     <Modal onClose={props.onClose}>
         {cartItems}
@@ -47,10 +62,11 @@ export default function Cart(props) {
             <span>Total Amount</span>
             <span>{totalAmount}</span>
         </div>
-        <div className={classes.actions}>
-            <button className={classes['button--alt']} onClick ={props.onClose}>Close</button>
-            {hasItems && <button className={classes.button}>Order</button>}
-        </div>
+        {/* if checkout is truthy we need to render checkout */}
+       {isCheckout && <CheckOut onCancel={props.onClose}/>} 
+       {/* to hide the form if it not checkout  */}
+       {!isCheckout && <modalActions /> }
+       
     </Modal>
   )
 }
