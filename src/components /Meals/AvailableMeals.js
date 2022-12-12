@@ -43,7 +43,7 @@ export default function AvailableMeals() {
         // the useEffect will run when the component first is loaded, no props or other depenciirs here 
         const fetchMeals = async () => {
             
-        const response = await fetch('')
+        const response = await fetch('https://foodorder-b91c4-default-rtdb.firebaseio.com/')
         // if there is error it will throw an error 
         if(!response.ok){
             throw new Error ('Something went wrong!')

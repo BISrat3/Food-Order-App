@@ -1,5 +1,5 @@
-import React, {useRef} from 'react'
-import classes from './Checkout.module.css'
+import React, {useRef, useState} from 'react'
+import classes from './CheckOut.module.css'
 
 // check the value is empty 
 const isEmpty = value => value.trim().length === ''
@@ -7,6 +7,13 @@ const isEmpty = value => value.trim().length === ''
 const isNotFiveChars = value => value.trim().length !== 5;
 
 export default function CheckOut(props) {
+    const [formInputsValidity, setFormInputsValidity] = useState({
+        name: true,
+        street: true, 
+        city: true,
+        postalCode: true,
+    })
+
     // we use useRef for every key stroke when each form is submitted
     const nameInputRef = useRef()
     {/* use this ref whenever the user enter any key when the form is submitted  */}
@@ -15,13 +22,6 @@ export default function CheckOut(props) {
     const cityInputRef = useRef()
 
     const confirmHandler =(event) =>{
-
-        const [formInputsValidity, setFormInputsValidity] = useState({
-            name: true,
-            street: true, 
-            city: true,
-            postalCode: true,
-        })
 
         // prevent default to ensure the browser defalut which would be to send http request is prevented
         event.preventDefault()
@@ -59,9 +59,14 @@ export default function CheckOut(props) {
         if (!formIsValid){
             return
         }
-        // 
-        // submit the cart data
-
+        // submit the cart data check the confirmation using user data we passedin 
+        props.onConfirm({
+            // check from the checkout component into cart component
+            name: enteredName,
+            street: enteredStreet,
+            postalCode: enteredPostalCode,
+            city: enteredCity,
+        })
     }
   return (
     <form classes={classes.form} onSubmit={confirmHandler}>
@@ -95,7 +100,7 @@ export default function CheckOut(props) {
             {!formInputsValidity.city && <p>Please enter a valid city!</p>}
         </div>
         <div className={classes.actions}>
-            <button type='button' onClick={onCancel}>Cancel</button>
+            <button type='button' onClick={props.onCancel}>Cancel</button>
             <button type='submit'>Confirm</button>
         </div>
     </form>
