@@ -46,6 +46,8 @@ export default function Cart(props) {
         // if is not submitted return back to previous state
         setIsSubmitting(false)
         setDidSubmit(true)
+        // to cart once it is submitted
+        cartCtx.clearCart()
     }
 
     const cartItems = (
