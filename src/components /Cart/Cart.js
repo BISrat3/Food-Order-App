@@ -21,8 +21,8 @@ export default function Cart(props) {
     }
     
     const cartItemAddHandler = (item) => {
-        // cartCtx.addItem(item)
-        cartCtx.addItem({ ...item, amount:1 })
+        cartCtx.addItem(item)
+        // cartCtx.addItem({ ...item, amount:1 })
     }
     
     // when ever it is clicked I want to make sure the checkout form
@@ -89,7 +89,7 @@ export default function Cart(props) {
             {/* if checkout is truthy we need to render checkout */}
             {isCheckout && <CheckOut onConfirm={submitOrderHandler} onCancel={props.onClose}/>} 
             {/* to hide the form if it not checkout  */}
-            {!isCheckout && <modalActions /> }
+            {!isCheckout && modalActions }
         </React.Fragment> 
     )
     

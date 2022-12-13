@@ -22,7 +22,6 @@ export default function CheckOut(props) {
     const cityInputRef = useRef()
 
     const confirmHandler =(event) =>{
-
         // prevent default to ensure the browser defalut which would be to send http request is prevented
         event.preventDefault()
 
@@ -101,7 +100,7 @@ export default function CheckOut(props) {
         </div>
         <div className={classes.actions}>
             <button type='button' onClick={props.onCancel}>Cancel</button>
-            <button type='submit'>Confirm</button>
+            <button type='submit' className={classes.submit}>Confirm</button>
         </div>
     </form>
   )

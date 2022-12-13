@@ -42,8 +42,7 @@ export default function AvailableMeals() {
     useEffect (()=>{
         // the useEffect will run when the component first is loaded, no props or other depenciirs here 
         const fetchMeals = async () => {
-            
-        const response = await fetch('https://foodorder-b91c4-default-rtdb.firebaseio.com/')
+            const response = await fetch('https://foodorder-b91c4-default-rtdb.firebaseio.com/meals.json')
         // if there is error it will throw an error 
         if(!response.ok){
             throw new Error ('Something went wrong!')
@@ -84,25 +83,30 @@ export default function AvailableMeals() {
 
     // to render we simply check if loading it true 
     if(isLoading){
-        return <section className={classes.MealsLoading}>
-            <p>Loading....</p>
-        </section>
+        return (
+            <section className={classes.MealsLoading}>
+                <p>Loading....</p>
+            </section>
+        )
     }
 
     if(httpError){
-        return <section className={classes.MealsError}>
+        return (
+             <section className={classes.MealsError}>
             <p>{httpError}</p>
         </section>
+        )
     }
     // initially the meals is empty array
-    const mealsList= meals.map((meal)=> 
-    <MealItem 
-        key={meal.id} 
-        id={meal.id}
-        name ={meal.name} 
-        description={meal.description} 
-        price={meal.price} 
-    />);
+    const mealsList= meals.map((meal)=>  (
+        <MealItem 
+            key={meal.id} 
+            id={meal.id}
+            name ={meal.name} 
+            description={meal.description} 
+            price={meal.price} 
+        />
+    ));
     
   return (
     <section className={classes.meals}>
