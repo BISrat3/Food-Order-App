@@ -9,7 +9,6 @@ export default function Cart(props) {
     const [isCheckout, setIsCheckout] = useState(false)
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [didSubmit, setDidSubmit] = useState(false)
-
     const cartCtx = useContext(CartContext)
 
     const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`
@@ -87,7 +86,9 @@ export default function Cart(props) {
                 <span>{totalAmount}</span>
             </div>
             {/* if checkout is truthy we need to render checkout */}
-            {isCheckout && <CheckOut onConfirm={submitOrderHandler} onCancel={props.onClose}/>} 
+            {isCheckout &&  (
+                <CheckOut onConfirm={submitOrderHandler} onCancel={props.onClose}/>
+                )} 
             {/* to hide the form if it not checkout  */}
             {!isCheckout && modalActions }
         </React.Fragment> 
@@ -99,7 +100,7 @@ export default function Cart(props) {
         <React.Fragment>
             <p>Successfully sent the order!</p>
             <div className={classes.actions}>
-            <button className={classes['button--alt']} onClick ={props.onClose}>Close</button>
+            <button className={classes.button} onClick ={props.onClose}>Close</button>
             </div>
         </React.Fragment>
     return (

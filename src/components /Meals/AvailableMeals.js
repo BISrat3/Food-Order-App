@@ -35,7 +35,7 @@ export default function AvailableMeals() {
    // we will say state true because we are loading the data clearly 
     const [isLoading, setIsLoading] = useState(true)
     // we can see that we didn't see any error initially 
-    const [httpError, setHttpError] = useState(null)
+    const [httpError, setHttpError] = useState()
 
 
     // return a cleanup function which can be executed. which run syncronously 
